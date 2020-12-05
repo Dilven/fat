@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router } from "react-router-dom";
+import { QueryCache, ReactQueryCacheProvider } from 'react-query'
+import { Layout } from 'antd';
+import { ReactQueryDevtools } from 'react-query-devtools'
+import styles from './App.module.css'
+import { cacheConfig } from './config/cache';
+import 'antd/dist/antd.css'
+import { Routes } from './Routes';
+import { Navigation } from './components/Navigation/Navigation';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const { Header, Content, Footer } = Layout;
+
+const queryCache = new QueryCache(cacheConfig)
+
+const App = () => (
+  <ReactQueryCacheProvider queryCache={queryCache}>
+    <ReactQueryDevtools initialIsOpen />
+        <Layout className={`site-layout ${styles.layout}`} >
+          <Router>
+            <Navigation />
+            <Header className={`site-layout-sub-header-background ${styles.header}`} />
+            <Content className={styles.content}>
+              <main className={`site-layout-background ${styles.contentWrapper}`}>
+                <Routes />
+              </main>
+            </Content>
+            <Footer className={styles.footer}>Footer</Footer>
+          </Router>
+        </Layout>
+  </ReactQueryCacheProvider>
+);
 
 export default App;
