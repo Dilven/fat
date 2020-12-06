@@ -16,18 +16,18 @@ const queryCache = new QueryCache(cacheConfig)
 const App = () => (
   <ReactQueryCacheProvider queryCache={queryCache}>
     <ReactQueryDevtools initialIsOpen />
-        <Layout className={`site-layout ${styles.layout}`} >
-          <Router>
-            <Navigation />
-            <Header className={`site-layout-sub-header-background ${styles.header}`} />
-            <Content className={styles.content}>
-              <main className={`site-layout-background ${styles.contentWrapper}`}>
-                <Routes />
-              </main>
-            </Content>
-            <Footer className={styles.footer}>Footer</Footer>
-          </Router>
-        </Layout>
+    <Layout className={`site-layout ${styles.layout}`} >
+      <Router>
+        <Navigation />
+        <Header className={`site-layout-sub-header-background ${styles.header}`} />
+        <Content className={styles.content}>
+          <main className={`site-layout-background ${styles.contentWrapper}`}>
+            <Routes />
+          </main>
+        </Content>
+        <Footer className={styles.footer}>Footer</Footer>
+      </Router>
+    </Layout>
   </ReactQueryCacheProvider>
 );
 

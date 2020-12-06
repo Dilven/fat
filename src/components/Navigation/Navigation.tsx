@@ -21,7 +21,7 @@ export const Navigation = () => {
             <NavLink to={paths.home}>Home</NavLink>
           </Menu.Item>
           <Menu.Item key={paths.recipts} icon={<VideoCameraOutlined />}>
-            <NavLink to={paths.recipts}>Search movies</NavLink>
+            <NavLink to={paths.recipts}>Search receipts</NavLink>
           </Menu.Item>
           <Menu.Item key={paths.meals} icon={<UploadOutlined />}>
             <NavLink to={paths.meals}>Search series</NavLink>

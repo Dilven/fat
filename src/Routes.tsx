@@ -9,10 +9,13 @@ export const Routes = () => (
       <screens.Home />
     </Route>
     <Route exact path={paths.recipts}>
-      <screens.Recipts />
+      <screens.Recipes />
     </Route>
     <Route exact path={paths.meals}>
       <screens.Meals />
+    </Route>
+    <Route exact path={`${paths.recipts}/:id`}>
+      <screens.Recipe />
     </Route>
   </Switch>
 )
