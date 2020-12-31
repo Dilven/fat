@@ -1,38 +1,28 @@
 import * as z from 'zod';
 import { Recipe, RecipeFullInfo } from '../schemas/recipe';
 
-export function searchRecipes(query: string) {
-  return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=${query}&number=10`, {
+export async function searchRecipes(query: string) {
+  const data: unknown = (await fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=${query}&number=10`, {
     headers: {
       "x-rapidapi-key": "cee42c4284msh6234a9b5d070531p13529djsn38776083e9a4",
       "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
       "useQueryString": "true"
     },
-  })
-  .then(response => response.json())
-  .then((data: unknown) => {
-    const parsedResponse = z.object({results: z.array(Recipe)}).parse(data)
-
-    return parsedResponse.results;
-  })
-
+  })).json();
+ 
+  return z.object({results: z.array(Recipe)}).parse(data);
 } 
 
-export function getRecipe(id: string) {
-  return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`, {
+export async function getRecipe(id: string) {
+  const data: unknown = (await fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`, {
     headers: {
       "x-rapidapi-key": "cee42c4284msh6234a9b5d070531p13529djsn38776083e9a4",
       "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
       "useQueryString": "true"
     },
-  })
-  .then(response => response.json()) 
-  .then((data: unknown) => {
-    const parsedResponse = RecipeFullInfo.parse(data)
-
-    return parsedResponse;
-  })
-
+  })).json();
+  
+  return RecipeFullInfo.parse(data)
 } 
 
 
