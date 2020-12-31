@@ -24,16 +24,3 @@ export const getRecipe = async (id: string) => {
   
   return RecipeFullInfo.parse(data)
 } 
-
-
-// var req = unirest("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/videos/search");
-
-// req.query({
-// 	"query": "chicken soup",
-// 	"excludeingredients": "mustard",
-// 	"includeingredients": "chicken",
-// 	"minLength": "0",
-// 	"maxLength": "999",
-// 	"offset": "0",
-// 	"number": "10"
-// });
